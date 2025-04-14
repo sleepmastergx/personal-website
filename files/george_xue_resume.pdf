@@ -1,0 +1,78 @@
+%PDF-1.4
+1 0 obj
+<</Type /Catalog /Pages 2 0 R>>
+endobj
+2 0 obj
+<</Type /Pages /Kids [3 0 R] /Count 1>>
+endobj
+3 0 obj
+<</Type /Page /Parent 2 0 R /Resources 4 0 R /MediaBox [0 0 612 792] /Contents 6 0 R>>
+endobj
+4 0 obj
+<</Font <</F1 5 0 R>>>>
+endobj
+5 0 obj
+<</Type /Font /Subtype /Type1 /BaseFont /Helvetica>>
+endobj
+6 0 obj
+<</Length 676>>
+stream
+BT
+/F1 24 Tf
+50 700 Td
+(George Xue) Tj
+/F1 12 Tf
+0 -20 Td
+(Robotics Researcher | Engineering Science Undergraduate) Tj
+0 -15 Td
+(University of Toronto | LEAF Lab) Tj
+0 -15 Td
+(Email: george.xue@robotics.utias.utoronto.ca) Tj
+
+/F1 16 Tf
+-50 -40 Td
+(Education) Tj
+/F1 12 Tf
+10 -20 Td
+(University of Toronto - Engineering Science Program) Tj
+0 -15 Td
+(Bachelor of Applied Science, Expected Graduation: 2026) Tj
+
+/F1 16 Tf
+-10 -30 Td
+(Research Experience) Tj
+/F1 12 Tf
+10 -20 Td
+(Research Assistant - LEAF Lab, UTIAS, University of Toronto) Tj
+0 -15 Td
+(2023 - Present) Tj
+0 -15 Td
+(Working on robotics research projects focused on autonomous systems) Tj
+
+/F1 16 Tf
+-10 -30 Td
+(Skills) Tj
+/F1 12 Tf
+10 -20 Td
+(Technical: ROS, Computer Vision, Machine Learning, Control Systems) Tj
+0 -15 Td
+(Programming: Python, C++, MATLAB, JavaScript, Arduino) Tj
+0 -15 Td
+(Tools: TensorFlow/PyTorch, OpenCV, Gazebo Simulation, Git, CAD Software) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f
+0000000009 00000 n
+0000000056 00000 n
+0000000111 00000 n
+0000000212 00000 n
+0000000253 00000 n
+0000000321 00000 n
+trailer
+<</Size 7 /Root 1 0 R>>
+startxref
+1047
+%%EOF
