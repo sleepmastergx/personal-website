@@ -1,67 +1,39 @@
-# George Xue - Personal Website
+# George Xue — Research Portfolio
 
-This repository contains the source code for George Xue's personal website, showcasing his robotics research, projects, publications, experience, and skills.
+A lightweight academic research website for George Xue, built with semantic HTML and responsive CSS. No build process, JavaScript, or external dependencies are required.
 
-## Website Structure
+## Content
 
-The website is built using HTML, CSS, and JavaScript with a professional dark green and white color theme. It includes the following sections:
+- Short biography and research interests
+- Four research projects with manuscript figures, methods, results, and evaluation scope
+- Accurate submission labels and public ACDC links
+- Education, research internship, confirmed email contact, and GitHub profile
 
-- **About**: Brief introduction to George Xue and his research interests
-- **Projects**: Showcase of robotics research projects
-- **Publications**: List of academic publications
-- **Experience**: Timeline of professional and research experience
-- **Skills**: Technical skills, programming languages, and tools
-- **Resume**: Link to download resume
+The three under-review or submitted projects do not link to unreleased manuscripts. Project descriptions summarize collaborative work, rather than assigning unverified individual contributions. The ACDC equal-contribution credit follows the supplied manuscript.
 
-## Deployment Instructions
+## Local preview
 
-### Local Development
+Open `index.html` directly, or run a local static server from this directory:
 
-To run the website locally:
-
-1. Clone this repository
-2. Open `index.html` in your web browser
-
-### GitHub Pages Deployment
-
-To deploy this website on GitHub Pages:
-
-1. Create a new repository on GitHub (or use your existing username.github.io repository)
-2. Push all the files from this repository to your GitHub repository
-3. Go to your repository settings on GitHub
-4. Scroll down to the "GitHub Pages" section
-5. Select the branch you want to deploy (usually `main` or `master`)
-6. Select the root folder as the source
-7. Click "Save"
-8. Your website will be published at `https://yourusername.github.io/` or `https://yourusername.github.io/repository-name/`
-
-## Customization
-
-To customize the website:
-
-- Update personal information in `index.html`
-- Replace placeholder images in the `images` folder with your own
-- Update the resume file in the `files` folder
-- Modify the CSS styles in `css/styles.css` to change the appearance
-
-## File Structure
-
-```
-personal_website/
-├── css/
-│   └── styles.css
-├── js/
-│   └── main.js
-├── images/
-│   ├── profile-placeholder.jpg
-│   ├── project1-placeholder.jpg
-│   ├── project2-placeholder.jpg
-│   └── project3-placeholder.jpg
-├── files/
-│   └── george_xue_resume.pdf
-└── index.html
+```sh
+python3 -m http.server 8000
 ```
 
-## License
+Then open `http://localhost:8000`. Navigation and project-detail disclosure controls work without JavaScript.
 
-© 2025 George Xue. All Rights Reserved.
+## Files
+
+- `index.html`: content, metadata, and semantic structure
+- `css/styles.css`: responsive layout, typography, accessibility, and print styles
+- `images/*.webp`: optimized research figures from the project manuscripts
+- `CNAME`: existing custom-domain configuration, preserved unchanged
+
+## Deployment
+
+The site can be served directly from the repository root with GitHub Pages or another static host. Confirm the existing Pages branch and custom-domain settings before deploying. `CNAME` has not been changed by this redesign.
+
+## Editing
+
+Edit the project entries directly in `index.html`. Keep each submission status current and confirm the disclosure permissions for unpublished work before deploying changes publicly. The confirmed contact address is `george.xue@robotics.utias.utoronto.ca`. Add a CV link only after confirming the intended file. When replacing figures, update the image dimensions, alt text, and figure credit together.
+
+© George Xue. All rights reserved. Research figure ownership remains with the respective authors.
