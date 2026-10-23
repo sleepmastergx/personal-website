@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="A world-model-centric robot policy that connects a single-layer action expert to a pretrained video backbone, reducing action-specific computation while retaining control performance.">
+    <meta name="theme-color" content="#f7f7f2">
+    <title>Faster-WAM · George Xue</title>
+    <link rel="canonical" href="https://georgexue.com/projects/faster-wam/">
+    <link rel="stylesheet" href="../../css/styles.css">
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header class="header">
+        <a class="wordmark" href="../../"><span aria-hidden="true">gx.</span> George Xue</a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="../../#research">Research</a>
+          <a href="../../#background">Background</a>
+          <a href="../../#hobbies">Hobbies</a>
+          <a href="https://github.com/sleepmastergx">GitHub</a>
+        </nav>
+      </header>
+      <main id="main" class="project-page">
+        <a class="back-link" href="../../#faster-wam">Back to all research</a>
+        <article aria-labelledby="project-heading">
+          <header class="project-hero">
+            <div class="project-meta"><span>Efficient robot policies</span>
+                  <span class="status">ICLR 2027 · Under review</span></div>
+            <h1 id="project-heading">Faster-WAM</h1>
+            <p class="project-subtitle">Do World Action Models Need Deep Action Modules?</p>
+            <p class="project-intro">A world-model-centric robot policy that connects a single-layer action expert to a pretrained video backbone, reducing action-specific computation while retaining control performance.</p>
+            
+            
+          </header>
+          <figure class="project-figure">
+                <div class="image-box">
+                  <img src="../../images/faster-wam.webp" width="1176" height="609" alt="Faster-WAM routes video-model representations through Lite KV-Fusion to a lightweight action expert, with a plot of task success versus inference latency.">
+                </div>
+                <figcaption>Architecture and efficiency trade-off · Figure 1 from the submitted manuscript</figcaption>
+              </figure>
+          <div class="project-content">
+          <section class="project-section" aria-labelledby="section-0">
+            <h2 id="section-0">Approach</h2>
+            <p>Dock of Transformers and Lite KV-Fusion give a shallow action expert access to video-model representations. World-model-only conditioning and retracted 1D-RoPE align the action and video branches.</p>
+          </section>
+          <section class="project-section" aria-labelledby="section-1">
+            <h2 id="section-1">Reported results</h2>
+            <p>98.3% success on LIBERO and 78.3% on LIBERO-Plus, with a 3.7–3.8× speedup over Fast-WAM in matched comparisons. Physical tests report 81.3% mean success, compared with 80.0% for Fast-WAM.</p>
+          </section>
+          <section class="project-section" aria-labelledby="section-2">
+            <h2 id="section-2">Scope</h2>
+            <p>Evaluations cover two video backbones and four physical tasks on one platform. A single action layer is not established as universally optimal.</p>
+          </section>
+          </div>
+        </article>
+        <nav class="more-projects" aria-labelledby="more-projects-heading">
+          <h2 id="more-projects-heading">Explore the research</h2>
+          <div class="project-nav-links">
+            <a href="../la-jepa/">La-JEPA</a>
+            <a href="../faster-wam/" aria-current="page">Faster-WAM</a>
+            <a href="../robot-memory/">Decodable Cues, Unreliable Execution</a>
+            <a href="../acdc/">Agentic Aerial Cinematography</a>
+            <a href="../preferenced-eureka/">Preferenced Eureka</a>
+          </div>
+        </nav>
+      </main>
+      <footer>
+        <span>George Xue · Research portfolio</span>
+        <a class="footer-email" href="mailto:george.xue@robotics.utias.utoronto.ca">george.xue@robotics.utias.utoronto.ca</a>
+        <a href="#main">Back to top</a>
+      </footer>
+    </div>
+  </body>
+</html>

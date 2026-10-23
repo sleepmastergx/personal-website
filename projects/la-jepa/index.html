@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Compact robot policies trained in a pretrained JEPA feature space, learning actions and future features jointly while predicting only actions at deployment.">
+    <meta name="theme-color" content="#f7f7f2">
+    <title>La-JEPA · George Xue</title>
+    <link rel="canonical" href="https://georgexue.com/projects/la-jepa/">
+    <link rel="stylesheet" href="../../css/styles.css">
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header class="header">
+        <a class="wordmark" href="../../"><span aria-hidden="true">gx.</span> George Xue</a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="../../#research">Research</a>
+          <a href="../../#background">Background</a>
+          <a href="../../#hobbies">Hobbies</a>
+          <a href="https://github.com/sleepmastergx">GitHub</a>
+        </nav>
+      </header>
+      <main id="main" class="project-page">
+        <a class="back-link" href="../../#la-jepa">Back to all research</a>
+        <article aria-labelledby="project-heading">
+          <header class="project-hero">
+            <div class="project-meta"><span>Latent world modeling</span>
+                  <span class="status">ICLR 2027 · Under review</span></div>
+            <h1 id="project-heading">La-JEPA</h1>
+            <p class="project-subtitle">Compact Robot Policies with Latent World Modeling</p>
+            <p class="project-intro">Compact robot policies trained in a pretrained JEPA feature space, learning actions and future features jointly while predicting only actions at deployment.</p>
+            
+            
+          </header>
+          <figure class="project-figure">
+                <div class="image-box">
+                  <img src="../../images/la-jepa.webp" width="1209" height="384" alt="La-JEPA architecture with JEPA visual features, a World DiT, an Action DiT, and tube-motion encoding.">
+                </div>
+                <figcaption>La-JEPA architecture · Figure 2 from the submitted manuscript</figcaption>
+              </figure>
+          <div class="project-content">
+          <section class="project-section" aria-labelledby="section-0">
+            <h2 id="section-0">Approach</h2>
+            <p>A policy transformer trained from scratch uses a pretrained V-JEPA 2.1 encoder. Joint feature and action prediction allows the policy architecture to be designed for control.</p>
+          </section>
+          <section class="project-section" aria-labelledby="section-1">
+            <h2 id="section-1">Reported results</h2>
+            <p>La-JEPA L reaches 82.3% on LIBERO-Plus. Under the clean-trained RoboTwin 2.0 protocol, La-JEPA B reports 61.8% mean success across clean and randomized evaluations, in comparisons without embodied pretraining.</p>
+          </section>
+          <section class="project-section" aria-labelledby="section-2">
+            <h2 id="section-2">Scope</h2>
+            <p>Physical evaluations cover four tasks on one setup. The results do not establish broad real-world parity with larger pretrained policies.</p>
+          </section>
+          </div>
+        </article>
+        <nav class="more-projects" aria-labelledby="more-projects-heading">
+          <h2 id="more-projects-heading">Explore the research</h2>
+          <div class="project-nav-links">
+            <a href="../la-jepa/" aria-current="page">La-JEPA</a>
+            <a href="../faster-wam/">Faster-WAM</a>
+            <a href="../robot-memory/">Decodable Cues, Unreliable Execution</a>
+            <a href="../acdc/">Agentic Aerial Cinematography</a>
+            <a href="../preferenced-eureka/">Preferenced Eureka</a>
+          </div>
+        </nav>
+      </main>
+      <footer>
+        <span>George Xue · Research portfolio</span>
+        <a class="footer-email" href="mailto:george.xue@robotics.utias.utoronto.ca">george.xue@robotics.utias.utoronto.ca</a>
+        <a href="#main">Back to top</a>
+      </footer>
+    </div>
+  </body>
+</html>

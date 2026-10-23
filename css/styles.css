@@ -37,7 +37,7 @@ a:hover {
   text-decoration-thickness: 2px;
 }
 
-a:focus-visible, summary:focus-visible {
+a:focus-visible {
   outline: 3px solid #af6844;
   outline-offset: 5px;
 }
@@ -306,54 +306,6 @@ h2 {
   margin: 10px 0 0;
 }
 
-.project details {
-  border-top: 1px solid var(--line);
-  margin-top: 18px;
-  padding-top: 10px;
-}
-
-.project summary {
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 550;
-  color: var(--accent);
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.project summary::-webkit-details-marker {
-  display: none;
-}
-
-.project summary:after {
-  content: '+';
-  font-size: 19px;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.project details[open] summary:after {
-  content: '−';
-}
-
-.details-body {
-  font-size: 13px;
-  line-height: 1.75;
-  color: var(--muted);
-  padding-top: 8px;
-}
-
-.details-body p {
-  margin: 8px 0;
-}
-
-.details-body strong {
-  font-weight: 600;
-  color: var(--ink);
-}
-
 .background {
   padding-top: 65px;
   padding-bottom: 65px;
@@ -365,8 +317,8 @@ h2 {
 
 .background-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
 .background-item {
@@ -553,12 +505,6 @@ footer a {
   .project {
     break-inside: avoid;
   }
-  .project details {
-    display: block;
-  }
-  body {
-    background: white;
-  }
   .background {
     padding: 25px 0;
   }
@@ -631,4 +577,336 @@ footer {
     flex-wrap: wrap;
     gap: 12px 20px;
   }
+}
+
+/* Project cards link to standalone pages without JavaScript. */
+.project {
+  position: relative;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+
+.project:hover, .project:focus-within {
+  border-color: #93b0a5;
+  box-shadow: 0 3px 14px #162d3909;
+}
+
+.project-title {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-title::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.project-title:focus-visible {
+  outline: none;
+}
+
+.project-title:focus-visible::after {
+  outline: 3px solid #af6844;
+  outline-offset: -4px;
+}
+
+.project .links a, .project-entry {
+  position: relative;
+  z-index: 1;
+}
+
+.project-entry {
+  display: inline-block;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.project-entry:hover {
+  text-decoration: underline;
+}
+
+.project-placeholder {
+  background: #eef2eb;
+  border-right: 1px solid var(--line);
+  padding: 27px 29px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--accent);
+}
+
+.placeholder-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+
+.placeholder-title {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-style: italic;
+}
+
+.placeholder-number {
+  align-self: flex-end;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.project-upcoming .project-body {
+  align-self: center;
+}
+
+.hobbies {
+  padding-bottom: 65px;
+}
+
+.hobby-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  max-width: 620px;
+  padding: 10px 0 0;
+}
+
+.hobby-mark {
+  width: 78px;
+  height: 78px;
+  flex: 0 0 78px;
+  border: 1px solid var(--line);
+  background: #eef2eb;
+  border-radius: 50%;
+  color: var(--accent);
+}
+
+.hobby-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hobby-card h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 24px;
+  margin: 0 0 4px;
+}
+
+.hobby-card p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Project detail pages. */
+.back-link {
+  display: inline-block;
+  margin-top: 34px;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.project-hero {
+  max-width: 890px;
+  padding: 39px 0 36px;
+}
+
+.project-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5.3vw, 64px);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: 1.12;
+  margin: 20px 0 12px;
+  overflow-wrap: break-word;
+}
+
+.project-subtitle {
+  font-size: clamp(20px, 2.5vw, 27px);
+  letter-spacing: -.025em;
+  line-height: 1.35;
+  margin: 0 0 25px;
+}
+
+.project-intro {
+  max-width: 760px;
+  font-size: 17px;
+  color: var(--muted);
+  margin: 20px 0;
+}
+
+.project-hero .links {
+  font-size: 13px;
+  margin-top: 24px;
+}
+
+.project-hero .role {
+  margin-top: 14px;
+}
+
+.project-figure {
+  margin: 0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.project-figure .image-box {
+  padding: 30px;
+}
+
+.project-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 540px;
+  object-fit: contain;
+}
+
+.project-figure figcaption {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  padding: 12px 20px;
+}
+
+.project-content {
+  max-width: 780px;
+  margin: 43px auto 65px;
+}
+
+.project-section + .project-section {
+  margin-top: 35px;
+}
+
+.project-section h2 {
+  font-size: 28px;
+}
+
+.project-section p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 14px 0 0;
+}
+
+.placeholder-note {
+  padding: 32px;
+  background: #eef2eb;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+
+.more-projects {
+  border-top: 1px solid var(--ink);
+  padding: 28px 0 45px;
+}
+
+.more-projects h2 {
+  font-size: 25px;
+}
+
+.project-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.project-nav-links a {
+  text-decoration: none;
+}
+
+.project-nav-links a:hover {
+  text-decoration: underline;
+}
+
+.project-nav-links [aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+@media (max-width: 680px) {
+  .header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px 25px;
+  }
+  .nav {
+    flex-wrap: wrap;
+    gap: 12px 20px;
+  }
+  .project-placeholder {
+    min-height: 180px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .hobbies {
+    padding-bottom: 45px;
+  }
+  .hobby-card {
+    gap: 16px;
+  }
+  .project-hero {
+    padding: 30px 0;
+  }
+  .project-hero h1 {
+    font-size: 40px;
+  }
+  .project-intro {
+    font-size: 16px;
+  }
+  .project-figure .image-box {
+    padding: 16px;
+  }
+  .project-figure figcaption {
+    font-size: 10px;
+    padding: 10px 14px;
+  }
+  .project-content {
+    margin: 32px auto 45px;
+  }
+  .project-section h2 {
+    font-size: 26px;
+  }
+  .project-section p {
+    font-size: 15px;
+  }
+  .placeholder-note {
+    padding: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project {
+    transition: none;
+  }
+}
+
+@media print {
+  .back-link, .more-projects {
+    display: none;
+  }
+  .project-hero {
+    padding-top: 20px;
+  }
+  .project-section, .project-figure {
+    break-inside: avoid;
+  }
+}
+
+.interest-label {
+  margin-bottom: 15px;
 }
