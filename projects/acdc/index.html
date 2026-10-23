@@ -47,9 +47,14 @@
                 <figcaption>Language-guided scene coverage and flight planning · Figure 1 from the manuscript</figcaption>
               </figure>
           <div class="project-content">
+          <section class="project-section" aria-labelledby="motivation-heading">
+            <h2 id="motivation-heading">Motivation</h2>
+            <p>Filming requests often describe a feeling or visual outcome rather than a camera path. A request to make a house feel spacious leaves the system to decide what to show, where to place the camera, and how to move between shots while respecting obstacles and flight dynamics.</p>
+          </section>
           <section class="project-section" aria-labelledby="section-0">
             <h2 id="section-0">Approach</h2>
             <p>Vision-language shot retrieval and ordering, preference-based Bayesian camera-pose refinement, and collision-aware, dynamics-constrained trajectory planning connect filming intent to onboard control.</p>
+            <p>Each shot begins with a description grounded in frames from a posed exploration video. A vision-language model selects and orders candidate views, then compares rendered alternatives as Bayesian optimization adjusts camera position and yaw. These visual decisions happen before flight. A separate planning stage searches free space, builds obstacle-clearance corridors, and connects the refined viewpoints under quadrotor dynamics; onboard feedback control then tracks the resulting trajectory.</p>
           </section>
           <section class="project-section" aria-labelledby="section-1">
             <h2 id="section-1">Evaluation</h2>

@@ -40,13 +40,19 @@
                 <figcaption>Architecture and efficiency trade-off · Figure 1 from the submitted manuscript</figcaption>
               </figure>
           <div class="project-content">
+          <section class="project-section" aria-labelledby="motivation-heading">
+            <h2 id="motivation-heading">Motivation</h2>
+            <p>Repeated action denoising can make robot policies slow, even when they use a separate action module. Faster-WAM asks how much of that module is actually needed when a pretrained video model already provides rich representations. It concentrates capacity in the world model and tests whether a much smaller action expert can still support effective control.</p>
+          </section>
           <section class="project-section" aria-labelledby="section-0">
             <h2 id="section-0">Approach</h2>
             <p>Dock of Transformers and Lite KV-Fusion give a shallow action expert access to video-model representations. World-model-only conditioning and retracted 1D-RoPE align the action and video branches.</p>
+            <p>Lite KV-Fusion learns a separate mixture of video layers for each attention head, so the action expert can use information from across the backbone without matching its depth. It reuses existing keys and values rather than adding dense projections. At inference, the video context is computed once per action chunk and reused across denoising steps, reducing repeated action-side computation.</p>
           </section>
           <section class="project-section" aria-labelledby="section-1">
             <h2 id="section-1">Reported results</h2>
             <p>98.3% success on LIBERO and 78.3% on LIBERO-Plus, with a 3.7–3.8× speedup over Fast-WAM in matched comparisons. Physical tests report 81.3% mean success, compared with 80.0% for Fast-WAM.</p>
+            <p>These speedups refer to per-action-chunk model latency, not total task duration.</p>
           </section>
           <section class="project-section" aria-labelledby="section-2">
             <h2 id="section-2">Scope</h2>

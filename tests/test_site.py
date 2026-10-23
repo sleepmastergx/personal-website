@@ -110,6 +110,17 @@ class SiteTests(unittest.TestCase):
         self.assertIn('My current projects explore several parts of this broader goal.', self.home.content)
         self.assertNotIn('My research focuses on embodied AI and world–action models', self.home.content)
 
+    def test_expanded_project_descriptions(self):
+        expected = {'la-jepa': 'two-frame observation', 'faster-wam': 'separate mixture of video layers',
+                    'acdc': 'These visual decisions happen before flight.'}
+        for slug, phrase in expected.items():
+            page = self.pages[(ROOT / 'projects' / slug / 'index.html').resolve()]
+            self.assertIn('motivation-heading', page.ids)
+            self.assertIn(phrase, page.content)
+            self.assertGreaterEqual(len(page.all('section')), 4)
+        faster = self.pages[(ROOT / 'projects/faster-wam/index.html').resolve()]
+        self.assertIn('not total task duration', faster.content)
+
     def test_leaf_research_assistant_background(self):
         self.assertIn('LEAF Lab', self.home.content)
         self.assertIn('Research Assistant', self.home.content)

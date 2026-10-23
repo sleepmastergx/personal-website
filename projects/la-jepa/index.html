@@ -40,9 +40,14 @@
                 <figcaption>La-JEPA architecture · Figure 2 from the submitted manuscript</figcaption>
               </figure>
           <div class="project-content">
+          <section class="project-section" aria-labelledby="motivation-heading">
+            <h2 id="motivation-heading">Motivation</h2>
+            <p>Many robot policies inherit large transformers built for generating video or language. La-JEPA asks whether a policy can instead be designed around control, while still benefiting from pretrained visual representations. The goal is to separate the knowledge learned from video from the size and architecture of the policy that produces actions.</p>
+          </section>
           <section class="project-section" aria-labelledby="section-0">
             <h2 id="section-0">Approach</h2>
             <p>A policy transformer trained from scratch uses a pretrained V-JEPA 2.1 encoder. Joint feature and action prediction allows the policy architecture to be designed for control.</p>
+            <p>The model predicts features rather than reconstructing pixels. Its tube-motion encoding uses a two-frame observation to capture recent motion and jointly encodes future targets over a 32-frame horizon. During training, actions can attend to observations but not future features. At deployment, future prediction is removed, observation keys and values are cached once, and only the action transformer runs through the repeated denoising steps.</p>
           </section>
           <section class="project-section" aria-labelledby="section-1">
             <h2 id="section-1">Reported results</h2>
