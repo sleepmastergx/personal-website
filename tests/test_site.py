@@ -126,14 +126,23 @@ class SiteTests(unittest.TestCase):
         self.assertIn('Research Assistant', self.home.content)
         self.assertIn('University of Toronto Robotics Institute', self.home.content)
 
-    def test_hobbies_and_honest_placeholder(self):
+    def test_hobbies(self):
         self.assertIn('hobbies', self.home.ids)
         self.assertIn('Outside of research, I enjoy fishing.', self.home.content)
-        placeholder = self.pages[(ROOT / 'projects/preferenced-eureka/index.html').resolve()]
-        self.assertIn('Preferenced Eureka', placeholder.content)
-        self.assertIn('This page is a placeholder', placeholder.content)
-        self.assertIn('Details coming soon', placeholder.content)
-        self.assertEqual(placeholder.all('img'), [])
+
+    def test_preferenced_eureka_uses_resume_backed_experience(self):
+        project = self.pages[(ROOT / 'projects/preferenced-eureka/index.html').resolve()]
+        for page in (self.home, project):
+            for phrase in ('Preferenced Eureka', 'LEAF Lab', 'LLM/VLM', 'rollout videos', 'PyTorch'):
+                self.assertIn(phrase, page.content)
+            for stale in ('This page is a placeholder', 'Details coming soon', 'Project details will be added'):
+                self.assertNotIn(stale, page.content)
+        for phrase in ('language and visual feedback', 'My contributions', 'instructions, rollouts, and preference labels',
+                       'Isaac Sim', 'Nicholas Rhinehart', 'November 2024–July 2026'):
+            self.assertIn(phrase, project.content)
+        for unverified in ('Accepted', 'Under review', 'Submitted', 'success rate', 'state-of-the-art'):
+            self.assertNotIn(unverified, project.content)
+        self.assertEqual(project.all('img'), [])
 
     def test_public_resources_and_author_credit(self):
         acdc = self.pages[(ROOT / 'projects/acdc/index.html').resolve()]
