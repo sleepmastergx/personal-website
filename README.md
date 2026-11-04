@@ -30,7 +30,9 @@ Test the homepage and five project routes on desktop/mobile, project links, Back
 - `assets/css/`: homepage styles
 - `assets/js/field-notes.js`: optional motion toggle and focus behavior
 - `assets/illustrations/`: original decorative artwork
-- `assets/media/`: attributed Shadow Hand reference clip and poster, with source and MIT license in `assets/licenses/`
+- The current Shadow Hand animation is a looping GIF converted from the original Eureka project’s pen-spinning clip, with visible source credit, a pause control, and a still fallback for reduced-motion preferences. It is not presented as a Preferenced Eureka result.
+- `assets/media/`: the previous, unused Farama reference clip and poster; its MIT license remains in `assets/licenses/`.
+- `assets/licenses/MEDIA-SOURCES.md`: provenance and rights status for reference media.
 - `projects/*/index.html`: complete research detail pages
 - `css/styles.css`: research detail-page styles
 - `images/*.webp`: existing manuscript figures

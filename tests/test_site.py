@@ -202,17 +202,29 @@ class SiteTests(unittest.TestCase):
         self.assertNotIn('tabpanel', js)
         self.assertNotIn('role="tablist"', (ROOT / 'index.html').read_text())
 
-    def test_shadow_hand_reference_media_has_credit_license_and_controls(self):
-        self.assertEqual(len(self.home.all('video')), 1)
-        video = self.home.all('video')[0]
-        self.assertIn('controls', video)
-        self.assertNotIn('autoplay', video)
-        self.assertIn('Reference video', video.get('aria-label', ''))
-        self.assertTrue((ROOT / video['poster']).is_file())
-        self.assertIn('Gymnasium-Robotics / Farama Foundation', self.home.content)
-        self.assertIn('MIT License', self.home.content)
-        self.assertIn('Copyright (c) 2021 Farama Foundation', (ROOT / 'assets/licenses/FARAMA-DOCS-MIT.txt').read_text())
-        self.assertNotIn('eureka-pen-spin', (ROOT / 'index.html').read_text())
+    def test_eureka_animation_has_source_credit_and_motion_controls(self):
+        self.assertEqual(len(self.home.all('video')), 0)
+        images = [im for im in self.home.all('img') if 'eureka-animation' in im.get('class', '')]
+        self.assertEqual(len(images), 1)
+        animation = images[0]
+        self.assertEqual(animation['src'], 'assets/media/eureka-pen-spinning.gif')
+        self.assertTrue((ROOT / animation['src']).is_file())
+        self.assertTrue((ROOT / animation['data-still-src']).is_file())
+        self.assertEqual(animation['width'], '480')
+        self.assertEqual(animation['height'], '270')
+        self.assertIn('original Eureka project', animation['alt'])
+        self.assertIn('Pen spinning from the original', self.home.content)
+        self.assertIn('Ma et al., 2023', self.home.content)
+        self.assertIn('https://eureka-research.github.io/videos/pen_gallery/pen_spin_center.mp4', (ROOT / 'index.html').read_text())
+        self.assertIn('Pause animation', self.home.content)
+        self.assertIn('prefers-reduced-motion: reduce', self.home.all('source')[0]['media'])
+        js = (ROOT / 'assets/js/field-notes.js').read_text()
+        self.assertIn('data-still-src', (ROOT / 'index.html').read_text())
+        self.assertIn('clipMotionToggle.addEventListener', js)
+        self.assertIn('motionPaused || clipPaused || reduced', js)
+        self.assertNotIn('Gymnasium-Robotics / Farama Foundation', self.home.content)
+        self.assertNotIn('MIT License', self.home.content)
+
 
 
 if __name__ == '__main__':
