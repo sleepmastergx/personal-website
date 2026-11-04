@@ -88,7 +88,9 @@ class SiteTests(unittest.TestCase):
                 for labelled_by in attrs.get('aria-labelledby', '').split():
                     self.assertIn(labelled_by, page.ids)
             for image in page.all('img'):
-                self.assertTrue(image.get('alt'), path)
+                self.assertIn('alt', image, path)
+                if not image['alt']:
+                    self.assertEqual(image.get('aria-hidden'), 'true', path)
                 self.assertGreater(int(image['width']), 0)
                 self.assertGreater(int(image['height']), 0)
 
@@ -105,7 +107,7 @@ class SiteTests(unittest.TestCase):
                 self.assertNotIn('Accepted', page.content)
 
     def test_research_interests_are_broader_than_project_list(self):
-        self.assertIn('Research interests', self.home.content)
+        self.assertTrue(any(attrs.get('aria-label') == 'Research interests' for _, attrs in self.home.tags))
         self.assertIn('I’m broadly interested in robot learning', self.home.content)
         self.assertIn('My current projects explore several parts of this broader goal.', self.home.content)
         self.assertNotIn('My research focuses on embodied AI and world–action models', self.home.content)
@@ -121,9 +123,10 @@ class SiteTests(unittest.TestCase):
         faster = self.pages[(ROOT / 'projects/faster-wam/index.html').resolve()]
         self.assertIn('not total task duration', faster.content)
 
-    def test_leaf_research_assistant_background(self):
+    def test_leaf_researcher_background(self):
         self.assertIn('LEAF Lab', self.home.content)
-        self.assertIn('Research Assistant', self.home.content)
+        self.assertIn('Researcher · LEAF Lab', self.home.content)
+        self.assertNotIn('Research Assistant', self.home.content)
         self.assertIn('University of Toronto Robotics Institute', self.home.content)
 
     def test_hobbies(self):
@@ -169,7 +172,47 @@ class SiteTests(unittest.TestCase):
     def test_domain_and_dependency_free_behavior(self):
         self.assertEqual((ROOT / 'CNAME').read_text().strip(), 'georgexue.com')
         for page in self.pages.values():
-            self.assertEqual(page.all('script'), [])
+            for script in page.all('script'):
+                self.assertFalse(urlsplit(script.get('src', '')).scheme)
+                self.assertIn('defer', script)
+        self.assertEqual(len(self.home.all('script')), 1)
+        self.assertEqual(self.home.all('script')[0]['src'].split('?')[0], 'assets/js/field-notes.js')
+
+    def test_field_notebook_is_public_and_research_is_visible(self):
+        self.assertNotIn('Private preview', self.home.content)
+        self.assertNotIn('Design study', self.home.content)
+        self.assertFalse(any(meta.get('name') == 'robots' and 'noindex' in meta.get('content', '') for meta in self.home.all('meta')))
+        self.assertEqual(len(self.home.all('article')), 5)
+        self.assertTrue(all('hidden' not in attrs for attrs in self.home.all('article')))
+        self.assertIn('Actual Fishes.', self.home.content)
+        self.assertIn('Fishing photos to come.', self.home.content)
+        self.assertTrue(any(button.get('class') == 'motion-toggle' for button in self.home.all('button')))
+        for slug in SLUGS:
+            self.assertIn(slug, self.home.ids)
+            self.assertGreaterEqual(len([a for a in self.home.all('a') if a.get('href') == f'#{slug}']), 2)
+
+    def test_motion_respects_accessibility(self):
+        css = (ROOT / 'assets/css/field-notes.css').read_text()
+        js = (ROOT / 'assets/js/field-notes.js').read_text()
+        self.assertIn('prefers-reduced-motion:reduce', css)
+        self.assertIn('animation-play-state:paused', css)
+        self.assertIn('prefers-reduced-motion: reduce', js)
+        self.assertIn("'Resume motion'", js)
+        self.assertIn("'Pause motion'", js)
+        self.assertNotIn('tabpanel', js)
+        self.assertNotIn('role="tablist"', (ROOT / 'index.html').read_text())
+
+    def test_shadow_hand_reference_media_has_credit_license_and_controls(self):
+        self.assertEqual(len(self.home.all('video')), 1)
+        video = self.home.all('video')[0]
+        self.assertIn('controls', video)
+        self.assertNotIn('autoplay', video)
+        self.assertIn('Reference video', video.get('aria-label', ''))
+        self.assertTrue((ROOT / video['poster']).is_file())
+        self.assertIn('Gymnasium-Robotics / Farama Foundation', self.home.content)
+        self.assertIn('MIT License', self.home.content)
+        self.assertIn('Copyright (c) 2021 Farama Foundation', (ROOT / 'assets/licenses/FARAMA-DOCS-MIT.txt').read_text())
+        self.assertNotIn('eureka-pen-spin', (ROOT / 'index.html').read_text())
 
 
 if __name__ == '__main__':
