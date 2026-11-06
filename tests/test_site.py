@@ -185,7 +185,14 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(len(self.home.all('article')), 5)
         self.assertTrue(all('hidden' not in attrs for attrs in self.home.all('article')))
         self.assertIn('Actual Fishes.', self.home.content)
-        self.assertIn('Fishing photos to come.', self.home.content)
+        self.assertNotIn('Fishing photos to come.', self.home.content)
+        self.assertNotIn('Coming soon.', self.home.content)
+        photos = [image for image in self.home.all('img') if image['src'].startswith('images/fishing-catch-')]
+        self.assertEqual(len(photos), 2)
+        self.assertTrue(all(image.get('loading') == 'lazy' for image in photos))
+        self.assertTrue(all(image.get('alt') for image in photos))
+        self.assertIn('Catch 01', self.home.content)
+        self.assertIn('Catch 02', self.home.content)
         self.assertTrue(any(button.get('class') == 'motion-toggle' for button in self.home.all('button')))
         for slug in SLUGS:
             self.assertIn(slug, self.home.ids)
