@@ -1,8 +1,8 @@
 /* Direction 02: an open research journal, with every project visible. */
-/* Real catches, kept uncropped in a pair of notebook photo mounts. */
+/* Real catches, kept uncropped in notebook photo mounts. */
 .fishing-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;padding:40px;background:#e5e8d7}
 .fishing-photo{min-width:0;padding:12px 12px 0;background:#f8f7ed;border:1px solid #bac3ae;box-shadow:4px 6px 0 #c5cdb9;transform:rotate(-1.4deg)}
-.fishing-photo:nth-child(2){transform:rotate(1.4deg)}
+.fishing-photo:nth-child(even){transform:rotate(1.4deg)}
 .fishing-photo img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain}
 .fishing-photo figcaption{display:flex;flex-direction:column;gap:5px;padding:16px 3px 17px;font:10px/1.6 'Courier New',monospace}
 .fishing-photo .fish-name{font:20px/1.25 Georgia,serif}

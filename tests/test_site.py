@@ -199,11 +199,13 @@ class SiteTests(unittest.TestCase):
         self.assertNotIn('Fishing photos to come.', self.home.content)
         self.assertNotIn('Coming soon.', self.home.content)
         photos = [image for image in self.home.all('img') if image['src'].startswith('images/fishing-catch-')]
-        self.assertEqual(len(photos), 2)
+        self.assertEqual(len(photos), 4)
         self.assertTrue(all(image.get('loading') == 'lazy' for image in photos))
         self.assertTrue(all(image.get('alt') for image in photos))
-        for label in ('Likely channel catfish', 'Lake Ontario', 'Likely black grouper', 'Cuba'):
+        for label in ('Channel catfish', 'Lake Ontario', 'Black grouper', 'Cuba', 'Northern pike', 'Walleye'):
             self.assertIn(label, self.home.content)
+        self.assertNotIn('Likely', self.home.content)
+        self.assertEqual(len([tag for tag in self.home.all('span') if tag.get('class') == 'fish-place']), 2)
         for academic in ('Ictalurus punctatus', 'Mycteroperca bonaci', 'Identification references',
                          'Species IDs are best estimates from the photos.'):
             self.assertNotIn(academic, self.home.content)
