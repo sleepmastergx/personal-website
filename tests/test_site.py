@@ -169,6 +169,14 @@ class SiteTests(unittest.TestCase):
                 self.assertEqual(len(page.all('img')), 1)
                 self.assertEqual(len(page.all('figcaption')), 1)
 
+    def test_faster_wam_paper_is_available_from_both_pages(self):
+        project = self.pages[(ROOT / 'projects/faster-wam/index.html').resolve()]
+        for page in (self.home, project):
+            links = [a for a in page.all('a') if a.get('href') == 'https://arxiv.org/pdf/2608.02365']
+            self.assertEqual(len(links), 1)
+            self.assertEqual(links[0].get('target'), '_blank')
+            self.assertIn('noopener', links[0].get('rel', ''))
+
     def test_domain_and_dependency_free_behavior(self):
         self.assertEqual((ROOT / 'CNAME').read_text().strip(), 'georgexue.com')
         for page in self.pages.values():
