@@ -202,10 +202,11 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(len(photos), 2)
         self.assertTrue(all(image.get('loading') == 'lazy' for image in photos))
         self.assertTrue(all(image.get('alt') for image in photos))
-        for label in ('Likely channel catfish', 'Ictalurus punctatus', 'Lake Ontario',
-                      'Likely black grouper', 'Mycteroperca bonaci', 'Cuba'):
+        for label in ('Likely channel catfish', 'Lake Ontario', 'Likely black grouper', 'Cuba'):
             self.assertIn(label, self.home.content)
-        self.assertIn('Species IDs are best estimates from the photos.', self.home.content)
+        for academic in ('Ictalurus punctatus', 'Mycteroperca bonaci', 'Identification references',
+                         'Species IDs are best estimates from the photos.'):
+            self.assertNotIn(academic, self.home.content)
         self.assertTrue(any(button.get('class') == 'motion-toggle' for button in self.home.all('button')))
         for slug in SLUGS:
             self.assertIn(slug, self.home.ids)
