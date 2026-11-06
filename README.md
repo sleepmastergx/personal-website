@@ -8,7 +8,7 @@ A lightweight academic research website for George Xue, with a cobalt-and-paper 
 - Five research summaries and standalone detail pages
 - Current submission statuses, ACDC acceptance and equal-contribution credit
 - Researcher role for Preferenced Eureka at LEAF Lab
-- An Actual Fishes gallery with two user-provided catch photos
+- A Fishes gallery with two user-provided catch photos, locations, and qualified species IDs
 - A prominent, accessible CV button below the homepage introduction
 
 No fabricated catches, research outcomes, or placeholder photos are presented as real.

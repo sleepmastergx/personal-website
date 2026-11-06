@@ -192,15 +192,20 @@ class SiteTests(unittest.TestCase):
         self.assertFalse(any(meta.get('name') == 'robots' and 'noindex' in meta.get('content', '') for meta in self.home.all('meta')))
         self.assertEqual(len(self.home.all('article')), 5)
         self.assertTrue(all('hidden' not in attrs for attrs in self.home.all('article')))
-        self.assertIn('Actual Fishes.', self.home.content)
+        self.assertIn('Fishes.', self.home.content)
+        self.assertNotIn('Actual Fishes', self.home.content)
+        self.assertIn('fishes', self.home.ids)
+        self.assertIn('actual-fishes', self.home.ids)
         self.assertNotIn('Fishing photos to come.', self.home.content)
         self.assertNotIn('Coming soon.', self.home.content)
         photos = [image for image in self.home.all('img') if image['src'].startswith('images/fishing-catch-')]
         self.assertEqual(len(photos), 2)
         self.assertTrue(all(image.get('loading') == 'lazy' for image in photos))
         self.assertTrue(all(image.get('alt') for image in photos))
-        self.assertIn('Catch 01', self.home.content)
-        self.assertIn('Catch 02', self.home.content)
+        for label in ('Likely channel catfish', 'Ictalurus punctatus', 'Lake Ontario',
+                      'Likely black grouper', 'Mycteroperca bonaci', 'Cuba'):
+            self.assertIn(label, self.home.content)
+        self.assertIn('Species IDs are best estimates from the photos.', self.home.content)
         self.assertTrue(any(button.get('class') == 'motion-toggle' for button in self.home.all('button')))
         for slug in SLUGS:
             self.assertIn(slug, self.home.ids)
