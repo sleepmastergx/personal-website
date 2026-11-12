@@ -97,14 +97,22 @@ class SiteTests(unittest.TestCase):
     def test_acdc_acceptance_and_other_statuses(self):
         accepted = 'CoRL 2026 Agentic Robotics Workshop · Accepted'
         self.assertIn(accepted, self.home.content)
-        expected = {'acdc': accepted, 'la-jepa': 'ICLR 2027 · Under review',
-                    'faster-wam': 'ICLR 2027 · Under review',
+        expected = {'acdc': accepted, 'la-jepa': 'Under review',
+                    'faster-wam': 'Under review',
                     'robot-memory': 'CoRL 2026 Memory Workshop · Submitted'}
         for slug, status in expected.items():
             page = self.pages[(ROOT / 'projects' / slug / 'index.html').resolve()]
             self.assertIn(status, page.content)
             if slug != 'acdc':
                 self.assertNotIn('Accepted', page.content)
+
+    def test_review_statuses_do_not_name_a_venue(self):
+        self.assertEqual((ROOT / 'index.html').read_text().count('<p class="status">Under review</p>'), 2)
+        self.assertNotIn('ICLR', self.home.content)
+        for slug in ('la-jepa', 'faster-wam'):
+            path = (ROOT / 'projects' / slug / 'index.html').resolve()
+            self.assertIn('<span class="status">Under review</span>', path.read_text())
+            self.assertNotIn('ICLR', self.pages[path].content)
 
     def test_research_interests_are_broader_than_project_list(self):
         self.assertTrue(any(attrs.get('aria-label') == 'Research interests' for _, attrs in self.home.tags))
